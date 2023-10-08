@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
 import CardBox from '../components/CardBox'
 import LayoutGuest from '../layouts/Guest'
@@ -9,6 +8,8 @@ import { gradientBgPurplePink } from '../colors'
 import { appTitle } from '../config'
 import { useAppDispatch } from '../stores/hooks'
 import { setDarkMode } from '../stores/darkModeSlice'
+import { useRouter } from 'next/router';
+import { useEffect } from 'react'
 
 const StyleSelectPage = () => {
   const dispatch = useAppDispatch()
@@ -17,8 +18,10 @@ const StyleSelectPage = () => {
 
   const styles = ['white', 'basic']
 
-  const router = useRouter()
-
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/dashboard');
+  }, []);
   const handleStylePick = (e: React.MouseEvent, style: string) => {
     e.preventDefault()
 
